@@ -33,11 +33,10 @@
 					</TR>
 				</TBODY>
 			</TABLE>
-			<br><br>
+			<br>
 				<INPUT type="submit" value="로그인">
-				<INPUT type="button" value="초기화">
-			<Br><br>
-				<a href="${contextPath}/member/addMember.do">회원가입</a>
+				<INPUT type="reset" value="초기화">
+				<INPUT type="button" onclick="location.href='${contextPath}/member/memberForm.do';" value="회원가입">
 		</form>
 	</DIV>
 </body>

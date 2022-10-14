@@ -11,11 +11,11 @@ public interface MyPageService {
 
 	public List findMyOrderInfo(String order_id) throws Exception;
 
-	public List<OrderVO> listMyOrderHistory(Map dateMap) throws Exception;
+	public List<OrderVO> listMyOrderHistory(String member_id) throws Exception;
 
 	public MemberVO modifyMyInfo(Map memberMap) throws Exception;
 
-	public void cancelOrder(String order_id) throws Exception;
+	public String cancelOrder(String order_id) throws Exception;
 
 	public MemberVO myDetailInfo(String member_id) throws Exception;
 

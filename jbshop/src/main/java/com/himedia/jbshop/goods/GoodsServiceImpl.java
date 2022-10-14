@@ -48,5 +48,11 @@ public class GoodsServiceImpl implements GoodsService {
 		List goodsList=goodsDAO.selectGoodsBySearchWord(searchWord);
 		return goodsList;
 	}
-
+	
+	//상품모두 가져오기
+	public List<GoodsVO> goodsList() throws Exception{
+		List goodsList=goodsDAO.selectGoodsList();
+		return goodsList;
+	}
+	
 }

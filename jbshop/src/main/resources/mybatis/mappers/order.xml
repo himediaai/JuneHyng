@@ -84,7 +84,8 @@
 						                card_com_name,
 						                card_pay_month,
 						                orderer_hp,
-						                pay_orderer_hp_num)
+						                pay_orderer_hp_num,
+						                transactionId)
 							     values(#{order_seq_num},
 							            #{order_id},
 									    #{member_id},
@@ -109,7 +110,8 @@
 						                #{card_com_name},
 						                #{card_pay_month},
 						                #{orderer_hp},
-						                #{pay_orderer_hp_num})
+						                #{pay_orderer_hp_num},
+						                #{transactionId})
     	]]>
 	</insert>
 	

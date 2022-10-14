@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -72,6 +73,16 @@ public class GoodsControllerImpl implements GoodsController {
 		return mav;
 	}
 	
+	//상품모두가져오기
+	@RequestMapping(value="/goodsList.do" ,method = RequestMethod.GET)
+	public ModelAndView goodsList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		List<GoodsVO> goodsList=goodsService.goodsList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("goodsList", goodsList);
+		return mav;
+	}
+	
 	//빠른메뉴에 상품정보 및 상품갯수 세션에 저장
 	private void addGoodsInQuick(String goods_id,GoodsVO goodsVO,HttpSession session){
 		boolean already_existed=false;
@@ -103,6 +114,8 @@ public class GoodsControllerImpl implements GoodsController {
 		}
 		session.setAttribute("quickGoodsList",quickGoodsList);
 		session.setAttribute("quickGoodsListNum", quickGoodsList.size());
+		System.out.println("빠른메뉴리스트: "+session.getAttribute("quickGoodsList"));
+		System.out.println("빠른메뉴갯수: "+session.getAttribute("quickGoodsListNum"));
 	}
 
 }

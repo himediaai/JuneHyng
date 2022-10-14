@@ -13,11 +13,13 @@ public interface MyPageDAO {
 
 	public List selectMyOrderInfo(String order_id) throws DataAccessException;
 
-	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException;
+	public List<OrderVO> selectMyOrderHistoryList(String member_id) throws DataAccessException;
 
 	public void updateMyInfo(Map memberMap) throws DataAccessException;
 
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException;
 
 	public void updateMyOrderCancel(String order_id) throws DataAccessException;
+	
+	public String selectMyOrderTransactionId(String order_id) throws DataAccessException;
 }

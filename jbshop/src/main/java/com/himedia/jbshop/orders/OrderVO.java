@@ -37,7 +37,14 @@ public class OrderVO {
 	private int goods_qty;
 	private String goods_fileName;
 	private String orderer_hp;
+	private String transactionId;
 	
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
 	public int getOrder_seq_num() {
 		return order_seq_num;
 	}

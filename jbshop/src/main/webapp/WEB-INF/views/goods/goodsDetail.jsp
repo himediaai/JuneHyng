@@ -58,11 +58,12 @@
 			success : function(data, textStatus) {
 				//alert(data);
 				//$('#message').append(data);
+				console.log('받은데이터값: '+data);
 				if(data.trim()=='add_success'){
 					imagePopup('open', '.layer01');	
 				}else if(data.trim()=='already_existed'){
 					alert("이미 카트에 등록된 상품입니다.");	
-				}	
+				}
 			},
 			error : function(data, textStatus) {
 				alert("에러가 발생했습니다."+data);

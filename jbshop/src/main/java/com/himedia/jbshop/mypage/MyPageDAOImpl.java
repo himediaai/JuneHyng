@@ -26,8 +26,8 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return myOrderList;
 	}
 
-	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException {
-		List<OrderVO> myOrderHistList = (List) sqlSession.selectList("mapper.mypage.selectMyOrderHistoryList", dateMap);
+	public List<OrderVO> selectMyOrderHistoryList(String member_id) throws DataAccessException {
+		List<OrderVO> myOrderHistList = (List) sqlSession.selectList("mapper.mypage.selectMyOrderHistoryList", member_id);
 		return myOrderHistList;
 	}
 
@@ -43,5 +43,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	public void updateMyOrderCancel(String order_id) throws DataAccessException {
 		sqlSession.update("mapper.mypage.updateMyOrderCancel", order_id);
+	}
+
+	@Override
+	public String selectMyOrderTransactionId(String order_id) throws DataAccessException {
+		String transactionId=sqlSession.selectOne("mapper.mypage.selectMyOrderTransactionId", order_id);
+		return transactionId;
 	}
 }

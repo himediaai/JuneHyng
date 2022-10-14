@@ -18,4 +18,7 @@ public interface OrderController {
 
 	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> orderMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+	
+	public ModelAndView kakaoOrders(@RequestParam Map<String, String> orderMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 }

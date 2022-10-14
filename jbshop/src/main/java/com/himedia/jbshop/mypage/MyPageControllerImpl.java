@@ -37,7 +37,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			   HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		HttpSession session=request.getSession();
 		session=request.getSession();
-		session.setAttribute("side_menu", "my_page"); //���������� ���̵� �޴��� �����Ѵ�.
+		session.setAttribute("side_menu", "my_page"); 
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -68,44 +68,29 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/listMyOrderHistory.do" ,method = RequestMethod.GET)
-	public ModelAndView listMyOrderHistory(@RequestParam Map<String, String> dateMap,
-			                               HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView listMyOrderHistory(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String  member_id=memberVO.getMember_id();
-		
-		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
-		String beginDate=null,endDate=null;
-		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
-		beginDate=tempDate[0];
-		endDate=tempDate[1];
-		dateMap.put("beginDate", beginDate);
-		dateMap.put("endDate", endDate);
-		dateMap.put("member_id", member_id);
-		List<OrderVO> myOrderHistList=myPageService.listMyOrderHistory(dateMap);
-		
-		String beginDate1[]=beginDate.split("-"); //�˻����ڸ� ��,��,�Ϸ� �и��ؼ� ȭ�鿡 �����մϴ�.
-		String endDate1[]=endDate.split("-");
-		mav.addObject("beginYear",beginDate1[0]);
-		mav.addObject("beginMonth",beginDate1[1]);
-		mav.addObject("beginDay",beginDate1[2]);
-		mav.addObject("endYear",endDate1[0]);
-		mav.addObject("endMonth",endDate1[1]);
-		mav.addObject("endDay",endDate1[2]);
+		List<OrderVO> myOrderHistList=myPageService.listMyOrderHistory(member_id);
 		mav.addObject("myOrderHistList", myOrderHistList);
 		return mav;
-	}	
+	}
 	
 	@Override
 	@RequestMapping(value="/cancelMyOrder.do" ,method = RequestMethod.POST)
 	public ModelAndView cancelMyOrder(@RequestParam("order_id")  String order_id,
 			                         HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		ModelAndView mav = new ModelAndView();
-		myPageService.cancelOrder(order_id);
-		mav.addObject("message", "cancel_order");
+		String resultMsg=myPageService.cancelOrder(order_id);
+		if("정상처리".equals(resultMsg)) {
+			mav.addObject("message", "cancel_order");
+		}else {
+			mav.addObject("message", "cancel_order_fail");
+			mav.addObject("failMsg",resultMsg);
+		}
 		mav.setViewName("redirect:/mypage/myPageMain.do");
 		return mav;
 	}

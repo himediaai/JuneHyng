@@ -118,13 +118,4 @@
 		<div id="suggestList"></div>
 	</div>
 	<div class="clear"></div>
-	<%--주메뉴UI--%>
-	<div id="head_side_link" style="float: right">
-		<ul style="list-style: none;">
-			<li style="float: left"><a>상품목록</a></li>
-			<li style="float: left"><a>게시판</a></li>
-			<li style="float: left"><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
-			<li style="float: left"><a>고객센터</a></li>
-		</ul>
-	</div>
 </body>

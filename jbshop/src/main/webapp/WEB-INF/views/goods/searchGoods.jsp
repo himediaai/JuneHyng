@@ -39,12 +39,6 @@ pageContext.setAttribute("br", "<br/>"); //br 태그
 							${discounted_price}원
 						</strong><br>(10% 할인)
 					</td>
-					<td class="buy_btns">
-						<UL>
-							<li><a href="#">장바구니</a></li>
-							<li><a href="#">구매하기</a></li>
-						</UL>
-					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

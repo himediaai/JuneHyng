@@ -49,4 +49,11 @@ public class GoodsDAOImpl implements GoodsDAO {
 		 return list;
 	}
 	
+	//상품모두 가져오기
+	@Override
+	public ArrayList selectGoodsList() throws DataAccessException{
+		ArrayList list=(ArrayList)sqlSession.selectList("mapper.goods.goodsList");
+		 return list;
+	}
+	
 }

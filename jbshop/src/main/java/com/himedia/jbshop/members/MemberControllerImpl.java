@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.himedia.jbshop.common.BaseController;
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 @Controller("memberController")
 @RequestMapping(value="/member")
@@ -39,6 +40,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			HttpSession session=request.getSession();
 			session.setAttribute("isLogOn", true);
 			session.setAttribute("memberInfo",memberVO);
+			System.out.println("sessionLogin.isLogOn: "+session.getAttribute("isLogOn"));
+			System.out.println("sessionLogin.memberInfo: "+session.getAttribute("memberInfo"));
 			
 			String action=(String)session.getAttribute("action");//세션정보 가져오기
 			if(action!=null && action.equals("/order/orderEachGoods.do")){
@@ -62,6 +65,9 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		HttpSession session=request.getSession();
 		session.setAttribute("isLogOn", false);
 		session.removeAttribute("memberInfo");
+		System.out.println("sessionLogout.isLogOn: "+session.getAttribute("isLogOn"));
+		System.out.println("sessionLogout.memberInfo: "+session.getAttribute("memberInfo"));
+		
 		mav.setViewName("redirect:/main/main.do");
 		return mav;
 	}
